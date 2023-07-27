@@ -12,6 +12,9 @@
       - adobe-acrobat-reader
       - adobe-creative-cloud
     brew_packages:
+      - coreutils
+      - mas
+      - gcc
       - skhd
       - yabai
       - stow
@@ -24,11 +27,25 @@
       - docker
       - exa
       - fd
+      - ripgrep
+      - erdtree
       - fish
       - tmux
       - starship
       - fzf
       - jq
+      - make
+      - fnm
+      - go
+      - kubernetes-cli
+      - k9s
+      - terraform
+      - helm
+      - awscli
+      - argocd
+      - tfautomv
+      - syncthing
+      - tealdeer
   tasks:
     - name: Install brew casks
       homebrew_cask:
