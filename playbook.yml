@@ -1,0 +1,54 @@
+- hosts: localhost
+  vars:
+    brew_casks:
+      - arc
+      - google-drive
+      - 1password
+      - 1password-cli
+      - kitty
+      - odrive
+      - logseq
+      - vlc
+      - adobe-acrobat-reader
+      - adobe-creative-cloud
+    brew_packages:
+      - skhd
+      - yabai
+      - stow
+      - nvim
+      - git
+      - lazygit
+      - bat
+      - btop
+      - colima
+      - docker
+      - exa
+      - fd
+      - fish
+      - tmux
+      - starship
+      - fzf
+      - jq
+  tasks:
+    - name: Install brew casks
+      homebrew_cask:
+        update_homebrew: true
+        name: "{{ brew_casks }}"
+      when: ansible_facts['os_family'] == "Darwin"
+
+    - name: Install brew packages
+      homebrew:
+        update_homebrew: true
+        name: "{{ brew_packages }}"
+      when: ansible_facts['os_family'] == "Darwin"
+
+    - name: Clone dotfiles
+      git:
+        repo: https://github.com/barlevalon/dotfiles
+        update: false
+        dest: ~/dotfiles
+
+    - name: stow dotfiles
+      shell: make
+      args:
+        chdir: ~/dotfiles

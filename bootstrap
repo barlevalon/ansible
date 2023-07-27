@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+check_os() {
+  OS="$(uname)"
+  case "$OS" in
+    'Darwin')
+      OS='Mac'
+      ;;
+    'Linux')
+      OS='Linux'
+      ;;
+    *)
+      echo "Unsupported OS: $OS"
+      exit 1
+      ;;
+  esac
+  echo "$OS"
+}
+
+install_package() {
+  package=$1
+  if [ "$OS" == "Mac" ]; then
+    gum spin --spinner line --title "Installing $package" -- brew install "$package"
+  elif [ "$OS" == "Linux" ]; then
+    gum spin --spinner line --title "Installing $package" -- sudo apt-get install "$package"
+  fi
+  echo "[$(pprint ✓)] $package"
+}
+
+pprint() {
+  gum style --foreground 212 "$@"
+}
+
+bootstrap() {
+  echo "Running on $(pprint "$OS"). Bootstrapping..."
+  echo
+  if [ "$OS" == "Mac" ]; then
+    brew -v &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install gum &> /dev/null
+    echo "[$(pprint ✓)] homebrew"
+    echo "[$(pprint ✓)] gum"
+  else
+    echo "Linux support coming soon!"
+  fi
+}
+
+OS=$(check_os)
+bootstrap
+
+install_package ansible
+echo
+echo "$(pprint Done!) Now run ansible:"
+echo "ansible-pull -U https://github.com/barlevalon/ansible"
