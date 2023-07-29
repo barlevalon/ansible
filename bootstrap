@@ -33,7 +33,7 @@ pprint() {
 }
 
 bootstrap() {
-  echo "Running on $(pprint "$OS"). Bootstrapping..."
+  echo "Running on $OS. Bootstrapping..."
   echo
   if [ "$OS" == "Mac" ]; then
     brew -v &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
