@@ -16,7 +16,7 @@
       - coreutils
       - mas
       - gcc
-      - skhd
+      - koekeishiya/formulae/skhd
       - yabai
       - stow
       - nvim
@@ -48,6 +48,8 @@
       - syncthing
       - tealdeer
   tasks:
+    - name: Install rosetta
+      shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
     - name: Install brew casks
       homebrew_cask:
         update_homebrew: true
