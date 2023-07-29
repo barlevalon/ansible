@@ -37,7 +37,9 @@ bootstrap() {
   echo
   if [ "$OS" == "Mac" ]; then
     brew -v &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install gum &> /dev/null
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    brew install gum &> /dev/null 
     echo "[$(pprint ✓)] homebrew"
     echo "[$(pprint ✓)] gum"
   else
