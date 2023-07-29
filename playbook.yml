@@ -44,12 +44,14 @@
       - helm
       - awscli
       - argocd
-      - tfautomv
+      - busser/tap/tfautomv
       - syncthing
       - tealdeer
   tasks:
     - name: Install rosetta
       shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      when: ansible_facts['os_family'] == "Darwin"
+
     - name: Install brew casks
       homebrew_cask:
         update_homebrew: true
