@@ -11,6 +11,7 @@
       - vlc
       - adobe-acrobat-reader
       - adobe-creative-cloud
+      - raycast
     brew_packages:
       - coreutils
       - mas
