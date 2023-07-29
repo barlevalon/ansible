@@ -53,4 +53,4 @@ bootstrap
 install_package ansible
 echo
 echo "$(pprint Done!) Now run ansible:"
-echo "ansible-pull -U https://github.com/barlevalon/ansible"
+echo "ansible-pull -U https://github.com/barlevalon/ansible playbook.yml"
