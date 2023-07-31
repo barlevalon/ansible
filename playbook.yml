@@ -6,7 +6,7 @@
       - 1password
       - 1password-cli
       - kitty
-      # - odrive
+      - odrive
       - logseq
       - vlc
       - adobe-acrobat-reader
@@ -50,6 +50,16 @@
   tasks:
     - name: Install rosetta
       shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      when: ansible_facts['os_family'] == "Darwin"
+
+    - name: MacOS Defaults
+      shell: |
+        defaults write com.apple.dock autohide -bool true
+        defaults write com.apple.dock show-recents -bool false
+        defaults write com.apple.dock mru-spaces -bool false
+        killall Dock
+        defaults write -g InitialKeyRepeat -int 10
+        defaults write -g KeyRepeat -int 1
       when: ansible_facts['os_family'] == "Darwin"
 
     - name: Install brew casks
