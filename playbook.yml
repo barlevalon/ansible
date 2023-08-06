@@ -184,11 +184,6 @@
       args:
         creates: ~/Library/LaunchAgents/homebrew.mxcl.syncthing.plist
     
-    - name: tpm
-      git:
-        repo: https://github.com/tmux-plugins/tpm
-        dest: ~/.config/tmux/plugins/tpm
-
     - name: omf
       shell: |
         curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > install
