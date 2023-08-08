@@ -1,0 +1,9 @@
+- name: Brew tap fonts
+  homebrew_tap:
+    name: homebrew/cask-fonts
+
+- name: Install fonts
+  homebrew_cask:
+    update_homebrew: true
+    name: "{{ fonts }}"
+  when: ansible_facts['os_family'] == "Darwin"

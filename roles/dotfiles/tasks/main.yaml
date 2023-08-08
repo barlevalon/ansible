@@ -1,0 +1,15 @@
+- name: install needed deps
+  homebrew:
+    name: [stow, make, git]
+
+- name: Clone dotfiles
+  git:
+    repo: https://github.com/barlevalon/dotfiles
+    update: false
+    dest: ~/dotfiles
+
+- name: stow dotfiles
+  shell: make
+  args:
+    chdir: ~/dotfiles
+

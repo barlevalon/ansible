@@ -1,0 +1,5 @@
+- name: Install brew packages
+  homebrew:
+    update_homebrew: true
+    name: "{{ brew_packages }}"
+  when: ansible_facts['os_family'] == "Darwin"

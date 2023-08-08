@@ -1,0 +1,9 @@
+- name: MacOS Defaults
+  shell: |
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock mru-spaces -bool false
+    killall Dock
+    defaults write -g InitialKeyRepeat -int 11
+    defaults write -g KeyRepeat -int 1
+  when: ansible_facts['os_family'] == "Darwin"
