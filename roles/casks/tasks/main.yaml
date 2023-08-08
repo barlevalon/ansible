@@ -3,7 +3,7 @@
   shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
   when: ansible_facts['os_family'] == "Darwin"
   args:
-    creates: /usr/libexec/rosetta/oahd
+    creates: /Library/Apple/usr/libexec/rosetta/oahd
 
 - name: Install brew casks
   homebrew_cask:
