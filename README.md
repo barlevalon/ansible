@@ -1,3 +1,3 @@
 ```bash
-curl -s https://raw.githubusercontent.com/barlevalon/ansible/main/bootstrap | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/barlevalon/ansible/main/bootstrap)
 ```
