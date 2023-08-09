@@ -57,15 +57,15 @@ bootstrap() {
 clone_ansible_repo() {
   if [ ! -d ~/personal/ansible ]; then
     spin "Cloning ansible repo" git clone https://github.com/barlevalon/ansible ~/personal/ansible
-    checkmark "ansible repo"
   fi
+  checkmark "ansible repo"
 }
 
 run_ansible() {
   cd ~/personal/ansible
   spin "Installing ansible dependencies" ansible-galaxy install -r requirements.yaml
   checkmark "ansible dependencies"
-  spin --show-output "Running ansible" ansible-playbook -K playbook.yaml
+  ansible-playbook -K playbook.yaml
 }
 
 # Main
