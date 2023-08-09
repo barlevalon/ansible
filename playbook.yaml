@@ -1,6 +1,6 @@
 - hosts: localhost
 
-  var_files:
+  vars_files:
     - config.yaml
 
   roles:
