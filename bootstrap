@@ -33,7 +33,7 @@ spin() {
     local command=${@:2}
   fi
   gum spin $option --spinner line --title "$title" -- "$command"
-})
+}
 
 pprint() {
   gum style --foreground 212 "$@"
