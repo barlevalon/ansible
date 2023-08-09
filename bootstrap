@@ -17,10 +17,23 @@ check_os() {
 }
 
 install_package() {
-  package=$1
+  local package=$1
   gum spin --spinner line --title "Installing $package" -- brew install "$package"
   echo "[$(pprint ✓)] $package"
 }
+
+spin() {
+  if [ $1 == "--show-output" ]; then
+    local option="--show-output"
+    local title=$2
+    local command=${@:3}
+  else
+    local option=""
+    local title=$1
+    local command=${@:2}
+  fi
+  gum spin $option --spinner line --title "$title" -- "$command"
+})
 
 pprint() {
   gum style --foreground 212 "$@"
@@ -43,16 +56,16 @@ bootstrap() {
 
 clone_ansible_repo() {
   if [ ! -d ~/personal/ansible ]; then
-    gum spin --spinner line --title "Cloning ansible repo" -- git clone https://github.com/barlevalon/ansible ~/personal/ansible
+    spin "Cloning ansible repo" git clone https://github.com/barlevalon/ansible ~/personal/ansible
     checkmark "ansible repo"
   fi
 }
 
 run_ansible() {
   cd ~/personal/ansible
-  gum spin --spinner line --title "Installing ansible dependencies" -- ansible-galaxy install -r requirements.yaml
+  spin "Installing ansible dependencies" ansible-galaxy install -r requirements.yaml
   checkmark "ansible dependencies"
-  gum spin --spinner line --title "Running ansible" --show-output -- ansible-playbook -K playbook.yaml
+  spin --show-output "Running ansible" ansible-playbook -K playbook.yaml
 }
 
 # Main
