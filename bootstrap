@@ -57,6 +57,8 @@ bootstrap() {
 clone_ansible_repo() {
   if [ ! -d ~/personal/ansible ]; then
     spin "Cloning ansible repo" git clone https://github.com/barlevalon/ansible ~/personal/ansible
+  else
+    spin "Updating ansible repo" git -C ~/personal/ansible pull --rebase
   fi
   checkmark "ansible repo"
 }
