@@ -6,9 +6,7 @@ check_os() {
   case "$OS" in
     'Darwin')
       OS='Mac'
-      ;;
-    'Linux')
-      OS='Linux'
+      echo "Running on $OS".
       ;;
     *)
       echo "Unsupported OS: $OS"
@@ -20,11 +18,7 @@ check_os() {
 
 install_package() {
   package=$1
-  if [ "$OS" == "Mac" ]; then
-    gum spin --spinner line --title "Installing $package" -- brew install "$package"
-  elif [ "$OS" == "Linux" ]; then
-    gum spin --spinner line --title "Installing $package" -- sudo apt-get install "$package"
-  fi
+  gum spin --spinner line --title "Installing $package" -- brew install "$package"
   echo "[$(pprint ✓)] $package"
 }
 
@@ -37,18 +31,14 @@ checkmark() {
 }
 
 bootstrap() {
-  echo "Running on $OS. Bootstrapping..."
+  echo "Bootstrapping..."
   echo
-  if [ "$OS" == "Mac" ]; then
-    brew -v &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    brew install gum &> /dev/null 
-    checkmark "homebrew"
-    checkmark "gum"
-  else
-    echo "Linux support coming soon!"
-  fi
+  brew -v &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew install gum &> /dev/null 
+  checkmark "homebrew"
+  checkmark "gum"
 }
 
 clone_ansible_repo() {
