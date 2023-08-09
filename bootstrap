@@ -23,6 +23,7 @@ install_package() {
 }
 
 spin() {
+  echo "$@"
   if [[ $1 == --* ]]; then
     local option=$1
     local title=$2
@@ -32,6 +33,9 @@ spin() {
     local title=$1
     local command=${@:2}
   fi
+  echo "option: $option"
+  echo "title: $title"
+  echo "command: $command"
   gum spin $option --spinner line --title "$title" -- "$command"
 }
 
