@@ -32,6 +32,10 @@ pprint() {
   gum style --foreground 212 "$@"
 }
 
+checkmark() {
+  echo "[$(pprint ✓)] $@"
+}
+
 bootstrap() {
   echo "Running on $OS. Bootstrapping..."
   echo
@@ -40,17 +44,32 @@ bootstrap() {
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew install gum &> /dev/null 
-    echo "[$(pprint ✓)] homebrew"
-    echo "[$(pprint ✓)] gum"
+    checkmark "homebrew"
+    checkmark "gum"
   else
     echo "Linux support coming soon!"
   fi
 }
 
+clone_ansible_repo() {
+  if [ ! -d ~/personal/ansible ]; then
+    gum spin --spinner line --title "Cloning ansible repo" -- git clone https://github.com/barlevalon/ansible ~/personal/ansible
+    checkmark "ansible repo"
+  fi
+}
+
+run_ansible() {
+  cd ~/personal/ansible
+  gum spin --spinner line --title "Installing ansible dependencies" -- ansible-galaxy install -r requirements.yaml
+  checkmark "ansible dependencies"
+  gum spin --spinner line --title "Running ansible" --show-output -- ansible-playbook -K playbook.yaml
+}
+
+# Main
 OS=$(check_os)
 bootstrap
-
 install_package ansible
+clone_ansible_repo
+run_ansible
 echo
-echo "$(pprint Done!) Now run ansible:"
-echo "ansible-pull -K -U https://github.com/barlevalon/ansible playbook.yml"
+checkmark "Done!"
