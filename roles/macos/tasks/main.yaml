@@ -7,3 +7,11 @@
     defaults write -g InitialKeyRepeat -int 11
     defaults write -g KeyRepeat -int 1
   when: ansible_facts['os_family'] == "Darwin"
+
+# Required for odrive
+- name: Install rosetta
+  shell: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+  when: ansible_facts['os_family'] == "Darwin"
+  args:
+    creates: /Library/Apple/usr/libexec/rosetta/oahd
+

@@ -1,4 +1,18 @@
-brew_packages:
+---
+homebrew_cask_apps:
+  - arc
+  - google-drive
+  - 1password
+  - 1password-cli
+  - kitty
+  - odrive
+  - logseq
+  - vlc
+  - adobe-acrobat-reader
+  - adobe-creative-cloud
+  - raycastbrew_casks
+
+homebrew_installed_packages:
   - coreutils
   - mas
   - gcc

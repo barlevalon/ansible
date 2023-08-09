@@ -1,11 +1,14 @@
 - hosts: localhost
-  vars:
+
+  var_files:
+    - config.yaml
+
   roles:
     - macos
     - fonts
     - dotfiles
-    - packages
-    - casks
+    - geerlingguy.mac.homebrew
+
   tasks:
     - name: Create ~/personal
       file:
