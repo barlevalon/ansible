@@ -23,8 +23,8 @@ install_package() {
 }
 
 spin() {
-  if [ $1 == "--show-output" ]; then
-    local option="--show-output"
+  if [[ $1 == --* ]]; then
+    local option=$1
     local title=$2
     local command=${@:3}
   else
