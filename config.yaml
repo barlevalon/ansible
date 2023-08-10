@@ -10,7 +10,7 @@ homebrew_cask_apps:
   - vlc
   - adobe-acrobat-reader
   - adobe-creative-cloud
-  - raycastbrew_casks
+  - raycast
 
 homebrew_installed_packages:
   - coreutils
