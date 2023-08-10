@@ -25,7 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: faketty
+        uses: Yuri6037/Action-FakeTTY@v1.1
       # Runs a single command using the runners shell
       - name: Run bootstrap script
-        shell: 'script -q -e -c "bash{0}"'
-        run: ./bootstrap.sh
+        run: faketty ./bootstrap.sh
