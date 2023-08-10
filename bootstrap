@@ -32,7 +32,7 @@ spin() {
     local title="$1"
     local command="${@:2}"
   fi
-  gum spin $option --spinner line --title "$title" -- $command
+  gum spin $option --spinner line --title $title -- $command
 }
 
 pprint() {
