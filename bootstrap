@@ -32,7 +32,7 @@ spin() {
     local title="$1"
     local command="${@:2}"
   fi
-  gum spin $option --spinner line --title "'$title'" -- $command
+  gum spin $option --spinner line --title "$title" -- $command
 }
 
 pprint() {
@@ -58,7 +58,7 @@ clone_ansible_repo() {
   if [ ! -d ~/personal/ansible ]; then
     spin "Cloning ansible repo" git clone https://github.com/barlevalon/ansible ~/personal/ansible
   else
-    spin "Updating ansible repo" git -C ~/personal/ansible pull --rebase
+    spin "Updating ansible repo" git -C ~/personal/ansible pull --rebase --autostash
   fi
   checkmark "ansible repo"
 }
