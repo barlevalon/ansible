@@ -27,4 +27,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run bootstrap script
-        run: /bin/bash bootstrap
+        shell: 'script -q -e -c "bash{0}"'
+        run: ./bootstrap.sh
