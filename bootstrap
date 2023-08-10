@@ -65,6 +65,8 @@ clone_ansible_repo() {
 
 run_ansible() {
   cd ~/personal/ansible
+  export ANSIBLE_LOCALHOST_WARNING=False
+  export ANSIBLE_INVENTORY_UNPARSED_WARNING=False
   spin "Installing ansible dependencies" ansible-galaxy install -r requirements.yaml
   checkmark "ansible dependencies"
   ansible-playbook -K playbook.yaml
