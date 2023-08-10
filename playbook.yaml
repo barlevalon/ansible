@@ -47,7 +47,7 @@
       args:
         creates: ~/.local/share/omf/
 
-    - name: gh-dash
-      command: gh extension install dlvhdr/gh-dash
-      args:
-        creates: ~/.local/share/gh/extensions/gh-dash/gh-dash
+    # - name: gh-dash
+    #   command: gh extension install dlvhdr/gh-dash
+    #   args:
+    #     creates: ~/.local/share/gh/extensions/gh-dash/gh-dash
