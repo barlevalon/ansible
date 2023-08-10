@@ -5,7 +5,6 @@
 
   roles:
     - macos
-    - fonts
     - dotfiles
     - geerlingguy.mac.homebrew
 
