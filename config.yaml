@@ -17,6 +17,7 @@ casks:
 
 homebrew_installed_packages:
   - coreutils
+  - gnu-sed
   - mas
   - gcc
   - koekeishiya/formulae/skhd
@@ -52,6 +53,7 @@ homebrew_installed_packages:
   - syncthing
   - tealdeer
   - urlview
+  - ranger
 
 fonts:
   - font-3270-nerd-font
